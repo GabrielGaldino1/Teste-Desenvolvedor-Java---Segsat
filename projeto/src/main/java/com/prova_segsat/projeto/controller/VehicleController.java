@@ -34,11 +34,7 @@ public class VehicleController {
         return vehicleRepository.save(vehicle);
     }
 
-    @GetMapping("/{id}")
-    public Vehicle getVehicleById(@PathVariable Long id) {
-        return vehicleRepository.findById(id).orElseThrow(() -> new RuntimeException("Vehicle not found"));
-    }
-
+    
     @PutMapping("/{id}")
     public Vehicle updateVehicle(@PathVariable Long id, @RequestBody Vehicle vehicleDetails) {
         Vehicle vehicle = vehicleRepository.findById(id).orElseThrow(() -> new RuntimeException("Vehicle not found"));
@@ -47,6 +43,10 @@ public class VehicleController {
         vehicle.setAnoFabricacao(vehicleDetails.getAnoFabricacao());
         return vehicleRepository.save(vehicle);
     }
+    @GetMapping("/{id}")
+        public Vehicle getVehicleById(@PathVariable Long id) {
+            return vehicleRepository.findById(id).orElseThrow(() -> new RuntimeException("Vehicle not found"));
+        }
 
     @PutMapping("/{id}/dados")
     public Vehicle updateVehicleData(@PathVariable Long id, @RequestBody Vehicle vehicleDetails) {
